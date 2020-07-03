@@ -31,7 +31,9 @@ export class OnlyForScreenModule {
             if (options) {
               configOptions.mobile = options.mobile;
               configOptions.tablet = options.tablet;
-              configOptions.debounce = options.debounce;
+              if (options.debounce) {
+                configOptions.debounce = options.debounce;
+              }
             }
             return ( configOptions );
           }

@@ -7,5 +7,5 @@ export enum ScreenType {
 export interface OnlyForScreenConfig {
   mobile: number;
   tablet: number;
-  debounce: number;
+  debounce?: number;
 }
