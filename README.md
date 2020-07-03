@@ -1,27 +1,58 @@
-# OnlyScreen
+#### Only For Screen Directive and Demo
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.0.
+This structural directive will show/hide element by screensize.
 
-## Development server
+##### Requirements
+ 
+ In independent module implement directive `onlyForScreen` that renders element when width of the screen is in certain range. Browser width can change after application starts up.
+ 
+ Service that tracks current browser width should receive configuration during initialization with threshold values (lowest value from which device starts).
+ 
+ Example of usage:
+ ```
+ <span *onlyForScreen="'desktop'">shown on big screens</span>
+ <span *onlyForScreen="'tablet'">shown on tablet screens</span>
+ <span *onlyForScreen="'mobile'">shown on small screens</span>
+ ```
+ 
+ Please take performance into consideration (page can have hundreds of elements that use this directive).
+ 
+ ```
+ interface IConfig {
+   mobile: number;
+   tablet: number;
+ }
+ 
+ mobile: viewportWidth < config.mobile
+ tablet: config.mobile <= viewportWidth < config.tablet
+ desktop: config.tablet <= viewportWidth
+ ```
+ 
+ Submission should include sandbox app with usage examples of this directive.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+##### How to use?
 
-## Code scaffolding
+* Import `OnlyForScreenModule.forRoot()` to targeted module
+* You can pass some config values with module import
+```
+{
+    mobile: number
+    tablet: number
+    debounce?: number
+}
+```
+* Example
+```
+OnlyForScreenModule.forRoot({mobile: 300, tablet: 800, debounce: 100})
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+##### Default config options
+```
+    mobile: 768 (px)
+    tablet: 1366 (px)
+    debounce: 40 (ms)
+```
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+* `mobile` - Mobile screen width limit
+* `tablet` - Tablet screen width limit
+* `debounce` - Synchronization timer (performance) (optional) 
