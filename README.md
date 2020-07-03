@@ -1,8 +1,8 @@
-#### Only For Screen Directive and Demo
+## Only For Screen Directive and Demo
 
 This structural directive will show/hide element by screensize.
 
-##### Requirements
+### Requirements
  
  In independent module implement directive `onlyForScreen` that renders element when width of the screen is in certain range. Browser width can change after application starts up.
  
@@ -30,7 +30,7 @@ This structural directive will show/hide element by screensize.
  
  Submission should include sandbox app with usage examples of this directive.
 
-##### How to use?
+### How to use?
 
 * Import `OnlyForScreenModule.forRoot()` to targeted module
 * You can pass some config values with module import
@@ -46,7 +46,7 @@ This structural directive will show/hide element by screensize.
 OnlyForScreenModule.forRoot({mobile: 300, tablet: 800, debounce: 100})
 ```
 
-##### Default config options
+### Default config options
 ```
     mobile: 768 (px)
     tablet: 1366 (px)
